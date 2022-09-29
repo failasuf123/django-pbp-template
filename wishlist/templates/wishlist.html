@@ -1,31 +1,53 @@
-{% extends 'base.html' %}
+{% load static %}
 
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-<h5>Nama: </h5>
-<b>{{nama}}</b>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+    
+</head>
+<body>
+    <div class="bg-secondary clearfix">
+        <h5 class="text-primary">Nama: </h5>
+        <b>{{nama}}</b>
+        <button><a href="{% url 'wishlist:logout' %}">Logout</a></button>
+    </div>
+    <div class="content">
+        <table class="table table-sm">
+            <tr>
+            <th>Nama Barang</th>
+            <th>Harga Barang</th>
+            <th>Deskripsi</th>
+            </tr>
+            {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
+        
+            {% for barang in list_barang %}
+            <tr>
+                <th>{{barang.nama_barang}}</th>
+                <th>{{barang.harga_barang}}</th>
+                <th>{{barang.deskripsi}}</th>
+            </tr>
+            {% endfor %}
+        
+        </table>
+    </div>
+    <div class="footer">
+        <h5>Sesi terakhir login: {{ last_login }}</h5>
+
+    </div>
 
 
-<table>
-    <tr>
-    <th>Nama Barang</th>
-    <th>Harga Barang</th>
-    <th>Deskripsi</th>
-    </tr>
-    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
 
-    {% for barang in list_barang %}
-    <tr>
-        <th>{{barang.nama_barang}}</th>
-        <th>{{barang.harga_barang}}</th>
-        <th>{{barang.deskripsi}}</th>
-    </tr>
-    {% endfor %}
 
-</table>
 
-<h5>Sesi terakhir login: {{ last_login }}</h5>
 
-<button><a href="{% url 'wishlist:logout' %}">Logout</a></button>
 
-{% endblock content %}
+
+
+</body>
+</html>
