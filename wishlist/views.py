@@ -28,6 +28,11 @@ def show_wishlist(request):
 }
     return render(request, "wishlist.html", context)
 
+# ajax 
+def show_ajax(request):
+    return render(request, "wishlist_ajax.html" )
+
+
 # xml
 def show_xml(request):
     data = BarangWishlist.objects.all()
